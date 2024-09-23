@@ -111,7 +111,7 @@ constexpr bool kShowInTaskbar = true;
 TipLangBarCallback::ItemId GetItemId(DWORD composition_mode) {
   switch (composition_mode) {
     case commands::DIRECT:
-      return TipLangBarCallback::kDirect;
+      return TipLangBarCallback::kHiragana;
     case commands::HIRAGANA:
       return TipLangBarCallback::kHiragana;
     case commands::FULL_KATAKANA:
