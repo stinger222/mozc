@@ -125,7 +125,7 @@ bool TipUiHandler::Update(TipTextService *text_service, ITfContext *context,
   if (open) {
     text_service->UpdateLangbar(true, mozc_mode);
   } else {
-    text_service->UpdateLangbar(true, commands::DIRECT);
+    text_service->UpdateLangbar(true, commands::HIRAGANA);
   }
   return result;
 }
