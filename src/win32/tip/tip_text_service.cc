@@ -208,7 +208,7 @@ commands::CompositionMode GetMozcMode(TipLangBarCallback::ItemId menu_id) {
     default:
       DLOG(FATAL) << "Unexpected item id: " << menu_id;
       // Fall back to DIRECT in release builds.
-      return commands::DIRECT;
+      return commands::HIRAGANA;
   }
 }
 
@@ -916,7 +916,7 @@ class TipTextServiceImpl
       case TipLangBarCallback::kHalfAlphanumeric:
       case TipLangBarCallback::kFullAlphanumeric:
       case TipLangBarCallback::kHalfKatakana: {
-        const commands::CompositionMode mozc_mode = GetMozcMode(menu_id);
+        const commands::CompositionMode mozc_mode = commands::HIRAGANA;
         return TipEditSession::SwitchInputModeAsync(this, mozc_mode);
       }
       case TipLangBarCallback::kProperty:
