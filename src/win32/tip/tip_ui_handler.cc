@@ -84,7 +84,7 @@ void UpdateLanguageBarOnFocusChange(TipTextService *text_service,
   const TipInputModeManager *input_mode_manager =
       text_service->GetThreadContext()->GetInputModeManager();
   const bool open = input_mode_manager->GetEffectiveOpenClose();
-   const CompositionMode mozc_mode = open ? commands::HIRAGANA : commands::DIRECT;
+   const CompositionMode mozc_mode = commands::HIRAGANA;
   text_service->UpdateLangbar(!disabled, static_cast<uint32_t>(mozc_mode));
 }
 
