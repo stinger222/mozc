@@ -157,7 +157,7 @@ bool ConversionModeUtil::ToNativeMode(mozc::commands::CompositionMode mode,
   const DWORD roman_flag = kana_lock_enabled_in_hiragana_mode ? 0 : kRoman;
   switch (mode) {
     case mozc::commands::DIRECT:
-      *flag = kAlphaNumeric | roman_flag;
+      *flag = kNative | kFullShape | roman_flag
       break;
     case mozc::commands::HIRAGANA:
       *flag = kNative | kFullShape | roman_flag;

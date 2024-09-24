@@ -302,6 +302,7 @@ bool Session::SendCommand(commands::Command *command) {
     }
     switch (session_command.composition_mode()) {
       case commands::DIRECT:
+        result = InputModeHiragana(command);
         // TODO(komatsu): Implement here.
         break;
       case commands::HIRAGANA:

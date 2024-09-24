@@ -2074,7 +2074,7 @@ TEST_F(KeyEventHandlerTest, Issue2801503ModeChangeWhenIMEIsGoingToBeTurnedOff) {
 
   Output mock_output;
   mock_output.set_consumed(true);
-  mock_output.set_mode(commands::DIRECT);
+  mock_output.set_mode(commands::HIRAGANA);
   mock_output.mutable_status()->set_activated(false);
   mock_output.mutable_status()->set_mode(commands::HIRAGANA);
   mock_output.mutable_status()->set_comeback_mode(commands::HIRAGANA);

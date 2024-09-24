@@ -135,7 +135,7 @@ constexpr MozcEngineToolProperty kMozcEngineToolProperties[] = {
     },
 };
 
-constexpr commands::CompositionMode kImeOffCompositionMode = commands::DIRECT;
+constexpr commands::CompositionMode kImeOffCompositionMode = commands::HIRAGANA;
 
 // Returns true if mozc_tool is installed.
 bool IsMozcToolAvailable() {

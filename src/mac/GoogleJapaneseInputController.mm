@@ -101,8 +101,9 @@ NSString *GetLabelForSuffix(const absl::string_view suffix) {
 CompositionMode GetCompositionMode(NSString *modeID) {
   if (modeID == nullptr) {
     LOG(ERROR) << "modeID could not be initialized.";
-    return mozc::commands::DIRECT;
+    return mozc::commands::HIRAGANA;
   }
+  return mozc::commands::HIRAGANA;
 
   // The name of direct input mode.  This name is determined at
   // Info.plist.  We don't use com.google... instead of
@@ -187,7 +188,7 @@ bool IsBannedApplication(const std::set<std::string, std::less<>> *bundleIdSet,
   originalString_ = [[NSMutableString alloc] init];
   composedString_ = [[NSMutableAttributedString alloc] init];
   cursorPosition_ = -1;
-  mode_ = mozc::commands::DIRECT;
+  mode_ = mozc::commands::HIRAGANA;
   suppressSuggestion_ = false;
   yenSignCharacter_ = mozc::config::Config::YEN_SIGN;
   candidateController_ = std::make_unique<mozc::renderer::RendererClient>();
@@ -253,7 +254,7 @@ bool IsBannedApplication(const std::set<std::string, std::less<>> *bundleIdSet,
   std::map<CompositionMode, NSString *> *newMap =
       new (std::nothrow) std::map<CompositionMode, NSString *>;
   if (newMap) {
-    (*newMap)[mozc::commands::DIRECT] = GetLabelForSuffix("Roman");
+    (*newMap)[mozc::commands::HIRAGANA] = GetLabelForSuffix("Roman");
     (*newMap)[mozc::commands::HIRAGANA] = GetLabelForSuffix("base");
     (*newMap)[mozc::commands::FULL_KATAKANA] = GetLabelForSuffix("Katakana");
     (*newMap)[mozc::commands::HALF_ASCII] = GetLabelForSuffix("Roman");

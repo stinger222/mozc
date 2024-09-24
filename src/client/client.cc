@@ -104,7 +104,7 @@ Client::Client()
       server_status_(SERVER_UNKNOWN),
       server_protocol_version_(0),
       server_process_id_(0),
-      last_mode_(commands::DIRECT) {
+      last_mode_(commands::HIRAGANA) {
   response_.reserve(kResultBufferSize);
   client_factory_ = IPCClientFactory::GetIPCClientFactory();
 

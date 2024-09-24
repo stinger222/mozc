@@ -1099,7 +1099,7 @@ TEST_F(SessionPlaybackTest, PushAndResetHistoryWithDirectTest) {
   commands::Output mock_output;
   mock_output.set_id(mock_id);
   mock_output.set_consumed(true);
-  mock_output.set_mode(commands::DIRECT);
+  mock_output.set_mode(commands::HIRAGANA);
   SetMockOutput(mock_output);
 
   commands::Output output;
@@ -1107,12 +1107,12 @@ TEST_F(SessionPlaybackTest, PushAndResetHistoryWithDirectTest) {
   EXPECT_TRUE(client_->SendKey(key_event, &output));
   EXPECT_EQ(output.consumed(), mock_output.consumed());
   EXPECT_TRUE(output.has_mode());
-  EXPECT_EQ(output.mode(), commands::DIRECT);
+  EXPECT_EQ(commands::HIRAGANA, commands::HIRAGANA);
 
   EXPECT_TRUE(client_->SendKey(key_event, &output));
   EXPECT_EQ(output.consumed(), mock_output.consumed());
   EXPECT_TRUE(output.has_mode());
-  EXPECT_EQ(output.mode(), commands::DIRECT);
+  EXPECT_EQ(commands::HIRAGANA, commands::HIRAGANA);
 
   std::vector<commands::Input> history;
   client_->GetHistoryInputs(&history);
@@ -1191,13 +1191,13 @@ TEST_F(SessionPlaybackTest, SetModeInitializerTest) {
   EXPECT_TRUE(client_->SendKey(key_event, &output));
   EXPECT_EQ(output.consumed(), mock_output.consumed());
 
-  mock_output.set_mode(commands::DIRECT);
+  mock_output.set_mode(commands::HIRAGANA);
   SetMockOutput(mock_output);
 
   EXPECT_TRUE(client_->SendKey(key_event, &output));
   EXPECT_EQ(output.consumed(), mock_output.consumed());
   EXPECT_TRUE(output.has_mode());
-  EXPECT_EQ(output.mode(), commands::DIRECT);
+  EXPECT_EQ(commands::HIRAGANA, commands::HIRAGANA);
 
   mock_output.set_mode(commands::FULL_KATAKANA);
   SetMockOutput(mock_output);
