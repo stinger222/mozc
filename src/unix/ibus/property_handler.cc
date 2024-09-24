@@ -65,6 +65,13 @@ struct MozcEngineProperty {
 // The list of properties used in ibus-mozc.
 constexpr MozcEngineProperty kMozcEngineProperties[] = {
     {
+        commands::DIRECT,
+        "InputMode.Hiragana",
+        "(NOT A) Direct input",
+        "A(B)",
+        "direct.png",
+    },
+    {
         commands::HIRAGANA,
         "InputMode.Hiragana",
         "Hiragana",
