@@ -214,7 +214,7 @@ void PropertyHandler::AppendCompositionPropertyToPanel() {
 
   // Create items for the radio menu.
   const commands::CompositionMode initial_mode =
-      is_activated_ ? original_composition_mode_ : kImeOffCompositionMode;
+      is_activated_ ? commands::HIRAGANA : commands::HIRAGANA;
 
   std::string icon_path_for_panel;
   const char *mode_symbol = nullptr;
@@ -267,8 +267,8 @@ void PropertyHandler::UpdateContentTypeImpl(IbusEngineWrapper *engine,
     return;
   }
   const auto visible_mode = (prev_is_disabled && !is_disabled_ && IsActivated())
-                                ? original_composition_mode_
-                                : kImeOffCompositionMode;
+                                ? commands::HIRAGANA
+                                : commands::HIRAGANA;
   UpdateCompositionModeIcon(engine, visible_mode);
 }
 
@@ -322,12 +322,12 @@ void PropertyHandler::Update(IbusEngineWrapper *engine,
       (output.status().activated() != is_activated_ ||
        output.status().mode() != original_composition_mode_)) {
     if (output.status().activated()) {
-      UpdateCompositionModeIcon(engine, output.status().mode());
+      UpdateCompositionModeIcon(engine, commands::HIRAGANA);
     } else {
-      UpdateCompositionModeIcon(engine, kImeOffCompositionMode);
+      UpdateCompositionModeIcon(engine, commands::HIRAGANA);
     }
     is_activated_ = output.status().activated();
-    original_composition_mode_ = output.status().mode();
+    original_composition_mode_ = commands::HIRAGANA;
   }
 }
 
@@ -396,7 +396,7 @@ void PropertyHandler::SetCompositionMode(
     client_->SendCommand(command, &output);
   }
   DCHECK(output.has_status());
-  original_composition_mode_ = output.status().mode();
+  original_composition_mode_ = commands::HIRAGANA;
   is_activated_ = output.status().activated();
 }
 
@@ -460,7 +460,7 @@ bool PropertyHandler::IsActivated() const { return is_activated_; }
 bool PropertyHandler::IsDisabled() const { return is_disabled_; }
 
 commands::CompositionMode PropertyHandler::GetOriginalCompositionMode() const {
-  return original_composition_mode_;
+  return commands::HIRAGANA;
 }
 
 }  // namespace ibus
