@@ -157,7 +157,6 @@ bool ConversionModeUtil::ToNativeMode(mozc::commands::CompositionMode mode,
   const DWORD roman_flag = kana_lock_enabled_in_hiragana_mode ? 0 : kRoman;
   switch (mode) {
     case mozc::commands::DIRECT:
-      // We do set |roman_flag|.
       *flag = kAlphaNumeric | roman_flag;
       break;
     case mozc::commands::HIRAGANA:
@@ -299,9 +298,22 @@ bool ConversionModeUtil::ConvertStatusFromMozcToNative(
   }
 
   // We no longer support DIRECT mode in mozc::commands::Status.
-  if (status.mode() == commands::DIRECT) {
+if (status.mode() == commands::DIRECT) {
+  uint32_t visible_native_mode = 0;
+
+  if (!ConversionModeUtil::ToNativeMode(commands::HIRAGANA,
+                                        kana_lock_enabled_in_hiragana_mode,
+                                        &visible_native_mode)) {
     return false;
   }
+
+  if (visible_imm32_mode != nullptr) {
+    *visible_imm32_mode = static_cast<DWORD>(visible_native_mode);
+  }
+  
+  return true;  // Return true after setting to Hiragana.
+}
+
 
   uint32_t logical_native_mode = 0;
   if (!ConversionModeUtil::ToNativeMode(status.comeback_mode(),
